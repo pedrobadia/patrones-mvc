@@ -1,10 +1,14 @@
-const express = require('express');
-const app = express();
+let express = require('express');
 
 let rutasMain = require('./routers/main.js');
 
-app.listen(3000, ()=>{
-    console.log('Servidor Local 3000 On Line');
-});
+const path = require('path');
 
-app.use ('/', rutasMain)
+let app = express();
+
+const publicPath = path.resolve(__dirname, './public');
+app.use (express.static (publicPath) );
+
+app.listen(3000, () => console.log('Servidor Local 3000 On Line'));
+
+app.use ('/', rutasMain);
